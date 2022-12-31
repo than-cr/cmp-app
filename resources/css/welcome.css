@@ -1,0 +1,122 @@
+.mainDiv {
+    position: relative;
+    width: 100%
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    content: "";
+}
+
+.swiper-wrapper{
+    display: flex;
+    align-items: center;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    position: relative;
+    height: 24px;
+    width: 24px;
+}
+
+.swiper {
+
+    height: 100%;
+}
+.swiper-slide:nth-child(n) {
+    width: 70%;
+}
+
+.swiper-slide:nth-child(2n) {
+    width: 70%;
+}
+
+@media (min-width: 768px) {
+
+    .swiper-slide:nth-child(n) {
+        width: 35%;
+    }
+
+    .swiper-slide:nth-child(2n) {
+        width: 35%;
+    }
+}
+@media (min-width: 1024px) {
+    .mainDiv {
+        position: relative;
+        height: 100%;
+        padding: 20px;
+        width: 70%
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        position: relative;
+        height: 32px;
+        width: 32px;
+    }
+    .swiper-slide:nth-child(n) {
+        width: 40%;
+    }
+
+    .swiper-slide:nth-child(2n) {
+        width: 40%;
+    }
+    .swiper-slide:nth-child(3n) {
+        width: 40%;
+    }
+}
+
+@media (min-width: 1536px) {
+    .mainDiv {
+        position: relative;
+        height: 100%;
+        padding: 40px;
+        width: 75%
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        height: 40px;
+        width: 40px;
+    }
+
+    .swiper-slide:nth-child(n) {
+        width: 30%;
+    }
+
+    .swiper-slide:nth-child(2n) {
+        width: 30%;
+    }
+    .swiper-slide:nth-child(3n) {
+        width: 30%;
+    }
+    .swiper-slide:nth-child(4n) {
+        width: 30%;
+    }
+}
+
+.swiper-slide {
+
+    text-align: center;
+    font-size: 18px;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.swiper-slide img {
+
+    width: 660px;
+    object-fit: cover;
+}
