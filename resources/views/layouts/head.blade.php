@@ -9,7 +9,8 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
-    @vite(['resources/css/app.css', 'resources/js/services/index.js'])
+    @vite(['resources/css/app.css', 'resources/js/services/index.js', 'resources/js/common.js'])
 
 </head>

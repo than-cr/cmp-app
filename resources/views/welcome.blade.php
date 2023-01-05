@@ -11,6 +11,19 @@
 
         <!-- Scripts -->
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+        <script>
+            let isOpen = false;
+            function toggleMenu() {
+                if (isOpen) {
+                    $("#MobileNavigation").attr("class","hidden sm:hidden mt-4 mx-auto");
+                } else {
+                    $("#MobileNavigation").attr("class","mt-4 mx-auto");
+                }
+                isOpen = !isOpen;
+            }
+        </script>
 
         @vite(['resources/css/app.css', 'resources/css/welcome.css', 'resources/js/common.js', 'resources/js/services/index.js'])
     </head>
