@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/js/common.js',
                 'resources/js/services/index.js',
                 'resources/js/services/register.js',
+                'resources/js/services/navigation.js'
             ],
             refresh: true,
         }),

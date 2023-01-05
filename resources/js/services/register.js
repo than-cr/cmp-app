@@ -3,6 +3,7 @@ import {getData} from "../common";
 $(document).ready(function () {
 
     $("#province").on('change', function () {
+
         let provinceId = $("#province").val();
 
         $("#canton").empty().append($('<option>').val("").text('--Seleccionar--'));
