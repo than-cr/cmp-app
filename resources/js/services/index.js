@@ -38,6 +38,4 @@ var swiper = new Swiper(".mySwiper", {
     }
 });
 
-function toggleMenu() {
-    alert(1);
-}
+
