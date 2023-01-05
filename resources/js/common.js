@@ -20,3 +20,5 @@ export function getData(url, callback) {
         },
     });
 }
+
+
