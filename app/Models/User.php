@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function district() {
+        return $this->belongsTo('App\Models\District');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,7 +23,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastName',
+        'motherLastName',
         'email',
+        'phoneNumber',
+        'birthDate',
+        'district',
         'password',
     ];
 

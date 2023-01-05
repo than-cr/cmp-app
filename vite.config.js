@@ -9,7 +9,9 @@ export default defineConfig({
                 'resources/css/welcome.css',
                 'resources/js/app.js',
                 'resources/js/bootstrap.js',
-                'resources/js/services/index.js'
+                'resources/js/common.js',
+                'resources/js/services/index.js',
+                'resources/js/services/register.js',
             ],
             refresh: true,
         }),
