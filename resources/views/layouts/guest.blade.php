@@ -9,7 +9,6 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/common.js', 'resources/js/services/register.js'])
-
         <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     </head>
     <body class="font-sans text-gray-900 antialiased">

@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\District;
+use Symfony\Component\HttpFoundation\Response;
 
 class DistrictController extends Controller
 {
-    //
+    public function getByCantonId($cantonId): \Illuminate\Http\JsonResponse
+    {
+        $districts = District::where('canton_id', $cantonId)->get();
+
+        return response()->json($districts)->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
+    }
 }

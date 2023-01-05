@@ -12,7 +12,7 @@
         <!-- Scripts -->
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-        @vite(['resources/css/app.css', 'resources/css/welcome.css', 'resources/js/services/index.js', 'resources/js/common.js'])
+        @vite(['resources/css/app.css', 'resources/css/welcome.css', 'resources/js/common.js', 'resources/js/services/index.js'])
     </head>
     <body class="antialiased">
         <div class="bg-white dark:bg-gray-800 ">

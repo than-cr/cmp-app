@@ -1,4 +1,4 @@
-function getData(url, callback) {
+export function getData(url, callback) {
     $.ajax({
         type: 'GET',
         url: url,
@@ -9,18 +9,14 @@ function getData(url, callback) {
 
         success: function (response) {
             if (response) {
-                if (response.status == 200) {
-                    callback(response);
-                } else {
-                    //processError(`An error ocurred during the ${url} request.`);
-                }
+                callback(response);
             }
         },
         error: function (e) {
             if (e.status !== 403) {
                 //showToastr(ajaxError);
+                alert('Error');
             }
-
         },
     });
 }

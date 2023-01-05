@@ -48,9 +48,10 @@
         <div class="mt-4">
             <x-input-label for="province" :value="__('Provincia')" />
             <select id="province" name="province" required class="block mt-1 w-full">
-            @foreach($provinces as $province )
-                <option value="{{$province->name}}">{{$province->name}}</option>
-            @endforeach
+                <option value="">--Seleccionar--</option>
+                @foreach($provinces as $province )
+                    <option value="{{$province->id}}">{{$province->name}}</option>
+                @endforeach
             </select>
             <x-input-error :messages="$errors->get('province')" class="mt-2" />
         </div>

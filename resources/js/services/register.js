@@ -1,11 +1,33 @@
-var Services = Services || {};
+import {getData} from "../common";
 
 $(document).ready(function () {
 
     $("#province").on('change', function () {
-        getData('https://api.agify.io/?name=meelad', function (response) {
-            alert(response.age);
-        });
+        let provinceId = $("#province").val();
+
+        $("#canton").empty().append($('<option>').val("").text('--Seleccionar--'));
+
+        if (provinceId != "") {
+            getData('/cantons/' + provinceId, function (response) {
+                $.each(response, function () {
+                    $("#canton").append($('<option>').val(this.id).text(this.name));
+                });
+            });
+        }
+    });
+
+    $("#canton").on('change', function () {
+        let cantonId = $("#canton").val();
+
+        $("#district").empty().append($('<option>').val("").text('--Seleccionar--'));
+
+        if (cantonId != "") {
+            getData('/districts/' + cantonId, function (response) {
+                $.each(response, function () {
+                    $("#district").append($('<option>').val(this.id).text(this.name));
+                });
+            });
+        }
     });
 
 });
