@@ -35,11 +35,12 @@ $(document).ready(function () {
     $("#all_permission").on('click', function() {
 
         if($(this).is(':checked')) {
-            $.each($('[class*=permission]'), function() {
+            $.each($("[name*='permission']") , function() {
                 $(this).prop('checked',true);
             });
+
         } else {
-            $.each($('[class*=permission]'), function() {
+            $.each($("[name*='permission']") , function() {
                 $(this).prop('checked',false);
             });
         }
