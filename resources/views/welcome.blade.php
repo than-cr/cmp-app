@@ -123,34 +123,10 @@
                         <div class="swiper-slide shadow-xl mb-10 mt-5  rounded-xl ">
                             <div class="flex flex-col  space-y-4">
                                 <div class="rounded-t-xl  group cursor-pointer relative flex justify-center items-center">
-                                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcenmiscr%2Fvideos%1138618560351161%2F&width=320" width="320" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcenmiscr%2Fvideos%2F916516816387262%2F&width=320" width="320" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
                                 </div>
                                 <div class="px-4 py-6 rounded-b-xl w-full flex justify-between  flex-col items-start ">
-                                    <p class="text-sm leading-none text-gray-600">Domingo 18 de Diciembre </p>
-                                    <p class="mt-3 text-base font-semibold leading-none text-gray-800">10:30 am</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide shadow-xl mb-10 mt-5  rounded-xl ">
-                            <div class="flex flex-col  space-y-4">
-                                <div class="rounded-t-xl  group cursor-pointer relative flex justify-center items-center">
-                                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcenmiscr%2Fvideos%1138618560351161%2F&width=320" width="320" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                </div>
-                                <div class="px-4 py-6 rounded-b-xl w-full flex justify-between  flex-col items-start ">
-                                    <p class="text-sm leading-none text-gray-600">Domingo 18 de Diciembre </p>
-                                    <p class="mt-3 text-base font-semibold leading-none text-gray-800">8:30 am</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide shadow-xl mb-10 mt-5  rounded-xl ">
-                            <div class="flex flex-col  space-y-4">
-                                <div class="rounded-t-xl  group cursor-pointer relative flex justify-center items-center">
-                                    <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fcenmiscr%2Fvideos%1138618560351161%2F&width=320" width="320" height="240" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                </div>
-                                <div class="px-4 py-6 rounded-b-xl w-full flex justify-between  flex-col items-start ">
-                                    <p class="text-sm leading-none text-gray-600">Jueves 22 de Diciembre </p>
+                                    <p class="text-sm leading-none text-gray-600">Martes 3 de Enero </p>
                                     <p class="mt-3 text-base font-semibold leading-none text-gray-800">7:10 pm</p>
                                 </div>
                             </div>
