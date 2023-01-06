@@ -70,9 +70,8 @@
 
                        <br>
 
-                       <button type="submit" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded">
-                           <p class="text-sm font-medium leading-none text-white">Crear rol</p>
-                       </button>
+                    <a href="{{ route('roles.create') }}" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded text-white" >Crear rol</a>
+
                 </div>
             </div>
         </div>
