@@ -3,3 +3,6 @@ php artisan db:seed --class=ProvinceSeeder
 php artisan db:seed --class=CantonSeeder
 php artisan db:seed --class=DistrictSeeder
 
+php artisan permission:create-permission-routes
+php artisan db:seed --class=CreateAdminUserSeeder
+

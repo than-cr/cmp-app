@@ -71,7 +71,6 @@
                     </div>
                 </div>
 
-{{--                TODO--}}
                 <!-- Mobile and small-screen devices (toggle Menu) -->
                 <div id="MobileNavigation" class="hidden sm:hidden mt-4 mx-auto">
                     <div class="flex flex-row items-center justify-center space-x-6">

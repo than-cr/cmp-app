@@ -10,9 +10,11 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/bootstrap.js',
                 'resources/js/common.js',
+                'resources/js/services/services.js',
                 'resources/js/services/index.js',
                 'resources/js/services/register.js',
-                'resources/js/services/navigation.js'
+                'resources/js/services/navigation.js',
+                'resources/js/services/role.js'
             ],
             refresh: true,
         }),

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -28,7 +29,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::get();
+        return view('roles.create', compact('permissions'));
     }
 
     /**
@@ -39,7 +41,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['name' => 'required|unique:roles,name', 'permission' => 'required']);
+        $role = Role::create(['name' => $request->get('name')]);
+        $role->syncPermissions($request->get('permission'));
+
+        return redirect()->route('roles.index')
+            ->with('success','Role created successfully');
     }
 
     /**
