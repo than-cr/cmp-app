@@ -1,8 +1,14 @@
-import {getData} from "../common";
+import {getData, postData, showErrorAlert, showSuccessAlert} from "../common";
 
 $(document).ready(function () {
+
+    function clearAndCloseModal() {
+        $("[name*='row']").remove();
+        $("#addRoleModal").css('display',"none");
+    }
+
     $("#addRoleBtn").on('click', function () {
-        getData('roles/create', function (response) {
+        getData('/roles/create', function (response) {
             let tableBody = $("#tbody");
             let index = 0;
             $.each(response, function () {
@@ -27,11 +33,37 @@ $(document).ready(function () {
         });
 
         $("#addRoleModal").css('display',"block");
-    })
+    });
 
     $("#btnCloseAddModal").click(function () {
-        $("[name*='row']").remove();
-        $("#addRoleModal").css('display',"none");
+        clearAndCloseModal();
+    });
+
+    $("#btnSaveAddRole").click(function (event) {
+        event.preventDefault();
+        let permissions = []
+
+        $.each($("[name*='permission']"), function () {
+            if (this.checked) {
+                permissions.push(this.value);
+            }
+        });
+
+        let object = {
+            'name' : $('#name').val(),
+            'permission' : permissions
+        }
+
+        let token =  $('input[name="_token"]').val();
+        let jsonData = JSON.stringify(object);
+        postData(token, '/roles', jsonData, function (response) {
+            if (response.status == null) {
+                showSuccessAlert();
+            } else {
+                showErrorAlert();
+            }
+            clearAndCloseModal();
+        });
     })
 
     $("#all_permission").on('click', function() {

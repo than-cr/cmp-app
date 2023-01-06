@@ -2,35 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
-class RoleController extends Controller
+class LiveController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View
+     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request): View|Factory|Application
+    public function index()
     {
-        $roles = Role::orderBy('id', 'DESC')->paginate(20);
-        return view('roles.index', compact('roles'))->with('index', ($request->input('page', 1) - 1) * 20);
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
-    public function create(): \Illuminate\Http\JsonResponse
+    public function create()
     {
-        $permissions = Permission::get();
-        return response()->json($permissions);
+        //
     }
 
     /**
@@ -41,16 +34,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $this->validate($request, ['name' => 'required|unique:roles,name', 'permission' => 'required']);
-            $role = Role::create(['name' => $request->get('name')]);
-            $role->syncPermissions($request->get('permission'));
-
-            return response()->json('Rol creado correctamente');
-        } catch (\Throwable $exception) {
-            report($exception);
-            return response()->json('Error creando rol', 500);
-        }
+        //
     }
 
     /**

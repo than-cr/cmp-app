@@ -1,9 +1,8 @@
-import {getData} from "../common";
+import {getData, showSuccess} from "../common";
 
 $(document).ready(function () {
 
     $("#province").on('change', function () {
-
         let provinceId = $("#province").val();
 
         $("#canton").empty().append($('<option>').val("").text('--Seleccionar--'));
@@ -30,5 +29,4 @@ $(document).ready(function () {
             });
         }
     });
-
 });
