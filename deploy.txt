@@ -1,4 +1,4 @@
-php artisan migrate
+php artisan migrate:refresh
 php artisan db:seed --class=ProvinceSeeder
 php artisan db:seed --class=CantonSeeder
 php artisan db:seed --class=DistrictSeeder
