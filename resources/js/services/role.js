@@ -3,10 +3,11 @@ import {getData} from "../common";
 $(document).ready(function () {
     $("#addRoleBtn").on('click', function () {
         getData('roles/create', function (response) {
-            var tableBody = $("#tbody");
+            let tableBody = $("#tbody");
+            let index = 0;
             $.each(response, function () {
                 tableBody.append(
-                    '<tr>' +
+                    '<tr name="row' + index + '">' +
                     '<td><div className="ml-5"><div className="bg-gray-200 dark:bg-gray-800  rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">' +
                     '<input placeholder="checkbox" type="checkbox" className="focus:opacity-100 checkbox w-full h-full permission" name="permission[' + this.name + ']" value="' + this.name + '" />' +
                     '<div className="check-icon hidden bg-indigo-700 text-white rounded-sm"><img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/tasks-svg7.svg" alt="check-icon"></div></div></div>' +
@@ -29,6 +30,7 @@ $(document).ready(function () {
     })
 
     $("#btnCloseAddModal").click(function () {
+        $("[name*='row']").remove();
         $("#addRoleModal").css('display',"none");
     })
 
