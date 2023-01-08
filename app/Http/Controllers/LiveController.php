@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Live;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class LiveController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return
      */
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(Request $request): Factory|View|Application
     {
-        $live = Live::orderBy('id', 'asc')->get();
-        return response()->json($live)->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);;
+        $lives = Live::orderBy('id', 'DESC')->paginate(20);
+        return view('lives.index', compact('lives'))->with('index', ($request->input('page', 1) - 1) * 20);;
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -32,12 +34,28 @@ class LiveController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        try {
+            $this->validate($request, ['name' => 'required', 'live_id' => 'required|unique:lives,live_id', 'date' => 'required', 'time' => 'required' ]);
+
+            $live = new Live;
+            $live = Live::create([
+                'name' => $request->get('name'),
+                'live_id' => $request->get('live_id'),
+                'date' => $request->get('date'),
+                'time' => $request->get('time'),
+            ]);
+
+            return response()->json('Live creado exitosamente');
+
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error creando live', 500);
+        }
     }
 
     /**
@@ -65,7 +83,7 @@ class LiveController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

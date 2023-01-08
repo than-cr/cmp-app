@@ -27,7 +27,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/lives', [LiveController::class, 'index'])->name('lives.index');
+Route::get('/info', function () {
+    phpinfo();
+});
 
 Route::get('/cantons/{provinceId}', [CantonController::class, 'getByProvinceId'])->name('canton.getByProvinceId');
 Route::get('/districts/{cantonId}', [DistrictController::class, 'getByCantonId'])->name('district.getByCantonId');
@@ -45,7 +47,7 @@ Route::middleware(['auth', 'permission'])->group(function () {
 
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
-    //Route::resource('lives', LiveController::class);
+    Route::resource('lives', LiveController::class);
 });
 
 require __DIR__.'/auth.php';

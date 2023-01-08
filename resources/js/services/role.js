@@ -54,7 +54,7 @@ $(document).ready(function () {
             'permission' : permissions
         }
 
-        let token =  $('input[name="_token"]').val();
+        const token =  $('input[name="_token"]').val();
         let jsonData = JSON.stringify(object);
         postData(token, '/roles', jsonData, function (response) {
             if (response.status == null) {

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('lives', function (Blueprint $table) {
             $table->id();
-            $table->string('live_id')->nullable(false);
+            $table->string('live_id')->nullable(false)->unique();
             $table->date('date');
             $table->time('time');
             $table->string('name');

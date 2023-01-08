@@ -71,10 +71,10 @@ function showError(text, callback) {
     });;
 }
 
-export function showSuccessAlert() {
-    showSuccess('')
+export function showSuccessAlert(callback) {
+    showSuccess('', callback)
 }
 
-export function showErrorAlert() {
-    showError("Algo malo pasó. Intentaremos solucionarlo prontamente.");
+export function showErrorAlert(callback) {
+    showError("Algo malo pasó. Intentaremos solucionarlo prontamente.", callback);
 }
