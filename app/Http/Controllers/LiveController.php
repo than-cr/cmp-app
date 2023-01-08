@@ -19,7 +19,7 @@ class LiveController extends Controller
     public function index(Request $request): Factory|View|Application
     {
         $lives = Live::orderBy('id', 'DESC')->paginate(20);
-        return view('lives.index', compact('lives'))->with('index', ($request->input('page', 1) - 1) * 20);;
+        return view('lives.index', compact('lives'));
     }
     /**
      * Show the form for creating a new resource.

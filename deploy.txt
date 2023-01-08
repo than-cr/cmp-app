@@ -1,8 +1,8 @@
-php artisan migrate:refresh
-php artisan db:seed --class=ProvinceSeeder
-php artisan db:seed --class=CantonSeeder
-php artisan db:seed --class=DistrictSeeder
+php artisan migrate:refresh --force
+php artisan db:seed --class=ProvinceSeeder --force
+php artisan db:seed --class=CantonSeeder --force
+php artisan db:seed --class=DistrictSeeder --force
 
 php artisan permission:create-permission-routes
-php artisan db:seed --class=CreateAdminUserSeeder
+php artisan db:seed --class=CreateAdminUserSeeder --force
 
