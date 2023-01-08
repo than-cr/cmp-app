@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Live;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class LiveController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
-        //
+        $live = Live::orderBy('id', 'asc')->get();
+        return response()->json($live)->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);;
     }
 
     /**

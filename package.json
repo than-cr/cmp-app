@@ -20,6 +20,7 @@
         "bootstrap": "^5.2.3",
         "bootstrap-icons": "^1.10.2",
         "jquery": "^3.6.3",
+        "moment": "^2.29.4",
         "sweetalert": "^2.1.2"
     }
 }
