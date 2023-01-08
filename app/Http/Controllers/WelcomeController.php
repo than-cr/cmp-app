@@ -11,7 +11,7 @@ class WelcomeController extends Controller
     //
     public function index()
     {
-        $lives = Live::orderBy('id', 'asc')->get();
+        $lives = Live::orderBy('id', 'DESC')->get();
         return view('welcome', compact('lives'));
     }
 }
