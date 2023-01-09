@@ -91,9 +91,8 @@
 
                                        <td class="">
                                            <div class="flex items-center pl-5">
-                                               <a href="{{ route('lives.edit', $live->id) }}"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Editar</a>
-                                               <a href="{{ route('lives.show', $live->id) }}"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Mostrar</a>
-                                               <a href="{{ route('lives.show', $live->id) }}"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Eliminar</a>
+                                               <button id="btnEditLive"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getLiveData({{ $live->id }})">Editar</button>
+                                               <button id="btnDeleteLive" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Eliminar</button>
                                            </div>
                                        </td>
                                    </tr>
@@ -113,6 +112,8 @@
         <div class="relative top-20 mx-auto p-5 border w-1/4 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
                 <form method="POST" action="{{ route('lives.store') }}">
+                    <input type="hidden" id="_update" value="false" />
+                    <input type="hidden" id="_identifier" value="0" />
                     @csrf
                     <br>
                     <div class="flex flex-col lg:mr-16">
@@ -141,7 +142,7 @@
 
                     <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         <button type="submit" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded" id="btnSaveAddLive">
-                            <p class="text-sm font-medium leading-none text-white">Crear rol</p>
+                            <p class="text-sm font-medium leading-none text-white">Guardar</p>
                         </button>
                         <button id="btnCloseAddModal" type="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-gray-100 hover:bg-blue-600 focus:outline-none rounded">
                             <p class="text-sm font-medium leading-none text-gray-800">Cancelar</p>

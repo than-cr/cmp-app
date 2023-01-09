@@ -1,1 +1,1 @@
-var Services = Services || {};
+export var Services = Services || {};

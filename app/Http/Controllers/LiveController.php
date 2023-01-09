@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Live;
+use http\Env\Response;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -18,7 +19,7 @@ class LiveController extends Controller
      */
     public function index(Request $request): Factory|View|Application
     {
-        $lives = Live::orderBy('id', 'DESC');
+        $lives = Live::orderBy('id', 'DESC')->get();
         return view('lives.index', compact('lives'));
     }
     /**
@@ -61,45 +62,79 @@ class LiveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
-        //
+        try {
+           $live = Live::find($id);
+           return response()->json($live);
+
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error obteniendo información del live', 500);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function edit($id)
     {
-        //
+        try {
+            $live = Live::find($id);
+            return response()->json($live);
+
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error obteniendo información del live', 500);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        try {
+            $this->validate($request, ['name' => 'required', 'live_id' => 'required|unique:lives,live_id,'.$id, 'date' => 'required', 'time' => 'required' ]);
+
+            $live = Live::find($id);
+
+            $live->update($request->all());
+
+            return response()->json('Live actualizado exitosamente');
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error actualizando información del live', 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        try {
+            $live = Live::find($id);
+
+            $live->delete();
+
+            return response()->json('Live eliminado exitosamente');
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error eliminando el live', 500);
+        }
     }
 }

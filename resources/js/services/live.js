@@ -1,12 +1,17 @@
-import {getData, postData, showErrorAlert, showSuccessAlert} from "../common";
+import {getData, postData, saveData, showErrorAlert, showSuccessAlert} from "../common";
 
 $(document).ready(function () {
     function clearAndCloseModal() {
-        //$("[name*='row']").remove();
+        $("#name").val("");
+        $("#identifier").val("");
+        $("#date").val("");
+        $("#time").val("");
         $("#addLiveModal").css('display',"none");
     }
 
     $("#addLiveBtn").on('click', function () {
+        $("#_update").val("false");
+        $("#_identifier").val("0");
         $("#addLiveModal").css('display',"block");
     });
 
@@ -27,7 +32,16 @@ $(document).ready(function () {
         const token =  $('input[name="_token"]').val();
 
         let jsonData = JSON.stringify(object);
-        postData(token, '/lives', jsonData, function (response) {
+
+        let isUpdate = $("#_update").val() == "true";
+
+        let url = '/lives'
+        if (isUpdate)
+        {
+            url += '/' + $("#_identifier").val();
+        }
+
+        saveData(token, url , jsonData, isUpdate, function (response) {
             if (response.status == null) {
                 showSuccessAlert(function () {location.reload();});
             } else {
@@ -37,3 +51,18 @@ $(document).ready(function () {
         });
     })
 });
+
+window.getLiveData = function (id) {
+    const url = 'lives/' + id + '/edit'
+    $("#_identifier").val(id);
+
+    getData(url, function (response) {
+        $("#_update").val("true");
+        $("#name").val(response.name);
+        $("#identifier").val(response.live_id);
+        $("#date").val(response.date);
+        $("#time").val(response.time);
+
+        $("#addLiveModal").css('display',"block");
+    });
+}

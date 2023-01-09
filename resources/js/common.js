@@ -46,6 +46,38 @@ export function postData(token, url, jsonData, callback) {
     });
 }
 
+export function updateData(token, url, jsonData, callback) {
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', token);
+        }
+    });
+    $.ajax({
+        url: url,
+        type: "PUT",
+        contentType: "application/json; charset=utf-8",
+        data: jsonData,
+        success: function (response) {
+            if (callback) {
+                callback(response);
+            }
+        },
+        error: function (response) {
+            if (callback) {
+                callback(response);
+            }
+        }
+    });
+}
+
+export function saveData(token, url, jsonData, update, callback) {
+    if (update) {
+        updateData(token, url, jsonData, callback);
+    } else {
+        postData(token, url, jsonData, callback);
+    }
+}
+
 function showSuccess(text, callback) {
     swal({
         title: "Bien hecho",
