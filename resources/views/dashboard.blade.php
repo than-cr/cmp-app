@@ -21,6 +21,9 @@
                                     @can('roles.index')
                                         <a href="{{ url('/roles') }}"><li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-blue-700 border border-blue-700 bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-sm leading-3 shadow-md rounded">Roles</li></a>
                                     @endcan
+                                    @can('users.index')
+                                        <a href="{{ url('/users') }}"><li class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-blue-700 border border-blue-700 bg-gray-50 cursor-pointer px-3 py-2.5 font-normal text-sm leading-3 shadow-md rounded">Usuarios</li></a>
+                                    @endcan
                                 </ul>
                             </nav>
 
