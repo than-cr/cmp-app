@@ -156,7 +156,7 @@
         <div class="relative top-20 mx-auto p-5 border w-1/4 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
                 <form method="POST" action="{{ route('users.store') }}">
-                    <input type="hidden" id="_update" value="false" />
+                    <input type="hidden" id="_update" value="true" />
                     <input type="hidden" id="_identifier" value="0" />
                     @csrf
                     <br>
@@ -225,7 +225,7 @@
                     <br>
 
                     <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button type="submit" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded" id="btnSaveAddLive">
+                        <button type="submit" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded" id="btnSaveUser">
                             <p class="text-sm font-medium leading-none text-white">Guardar</p>
                         </button>
                         <button id="btnCloseAddModal" type="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-gray-100 hover:bg-blue-600 focus:outline-none rounded">

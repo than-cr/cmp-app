@@ -36,9 +36,7 @@ $(document).ready(function () {
         }
 
         const token =  $('input[name="_token"]').val();
-
         let jsonData = JSON.stringify(object);
-
         let isUpdate = $("#_update").val() == "true";
 
         let url = '/lives'

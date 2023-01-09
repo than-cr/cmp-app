@@ -1,4 +1,4 @@
-import {getData} from "../common";
+import {getData, saveData, showErrorAlert, showSuccessAlert} from "../common";
 
 $(document).ready(function () {
 
@@ -38,12 +38,48 @@ $(document).ready(function () {
         $("#motherLastName").val("");
         $("#phoneNumber").val("");
         $("#birthDate").val("");
+        $("#canton").empty().append($('<option>').val("").text('--Seleccionar--'));
         $("#district").empty().append($('<option>').val("").text('--Seleccionar--'));
         $("#addUserModal").css('display',"none");
     }
 
     $("#btnCloseAddModal").click(function () {
         clearAndCloseModal();
+    });
+
+    $("#btnSaveUser").click(function () {
+        event.preventDefault();
+
+        let object = {
+            "name" : $("#name").val(),
+            "lastName" : $("#lastName").val(),
+            "motherLastName" : $("#motherLastName").val(),
+            "phoneNumber" : $("#phoneNumber").val(),
+            "email" : $("#email").val(),
+            "birthDate" : $("#birthDate").val(),
+            "district_id" : $("#district").val()
+        };
+
+        const token =  $('input[name="_token"]').val();
+        let jsonData = JSON.stringify(object);
+        let isUpdate = $("#_update").val() == "true";
+
+        let url = 'users/' + $("#_identifier").val();
+
+        saveData(token, url, jsonData, isUpdate, function (response) {
+            if (response.status == null) {
+                showSuccessAlert(function () {
+                    clearAndCloseModal();
+                    location.reload();}
+                );
+            } else {
+                showErrorAlert(function () {
+                    clearAndCloseModal();
+                    location.reload();}
+                );
+            }
+            clearAndCloseModal();
+        })
     });
 });
 
@@ -55,6 +91,7 @@ window.getUserData = function (id) {
     getData(url, function (response) {
 
         let userData = response;
+        $("#_update").val(true);
         $("#name").val(userData.name);
         $("#lastName").val(userData.lastName);
         $("#motherLastName").val(userData.motherLastName);

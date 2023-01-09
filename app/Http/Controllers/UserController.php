@@ -78,12 +78,29 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        //
+        try {
+            $this->validate($request, [
+                'name' => 'required|string|max:255',
+                'lastName' => 'required|string|max:255',
+                'motherLastName' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+                'phoneNumber' => 'required|digits:8',
+                'birthDate' => 'required|date',
+                'district_id' => 'required|numeric|between:1,489']);
+
+            $user =  User::find($id);
+            $user->update($request->all());
+
+            return response()->json('Usuario actualizado correctamente');
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error actualizando información del usuario', 500);
+        }
     }
 
     /**
