@@ -7,8 +7,15 @@
                 @method('delete')
                 @csrf
 
-                <div class="form-group">
-                    <button type="submit" id="btnDelete" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Eliminar</button>
+                <label class="form-label">Presione eliminar, para confirmar que desea eliminar este registro</label>
+
+                <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="submit" class="focus:ring-2 focus:ring-offset-2 focus:ring-red-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-red-700 hover:bg-red-600 focus:outline-none rounded" id="btnSaveAddLive">
+                        <p class="text-sm font-medium leading-none text-white">Eliminar</p>
+                    </button>
+                    <button id="btnCloseDeleteModal" type="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-gray-100 hover:bg-blue-600 focus:outline-none rounded">
+                        <p class="text-sm font-medium leading-none text-gray-800">Cancelar</p>
+                    </button>
                 </div>
             </form>
         </div>
