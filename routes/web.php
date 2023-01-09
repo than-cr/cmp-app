@@ -34,12 +34,14 @@ Route::get('/info', function () {
 
 Route::get('/cantons/{provinceId}', [CantonController::class, 'getByProvinceId'])->name('canton.getByProvinceId');
 Route::get('/districts/{cantonId}', [DistrictController::class, 'getByCantonId'])->name('district.getByCantonId');
-Route::get('/district/{districtId}', [DistrictController::class, 'getById'])->name('district.getById');
+
 
 Route::middleware(['auth', 'permission'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/users/provincecanton/{userId}', [UserController::class, 'getUserProvinceAndCantonByUserId'])->name('user.getUserProvinceAndCantonByUserId');
 
 
     Route::resource('users', UserController::class);

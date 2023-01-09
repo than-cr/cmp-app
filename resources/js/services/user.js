@@ -24,28 +24,40 @@ window.getUserData = function (id) {
     $("#_identifier").val(id);
 
     getData(url, function (response) {
-        $("#name").val(response.name);
-        $("#lastName").val(response.lastName);
-        $("#motherLastName").val(response.motherLastName);
-        $("#phoneNumber").val(response.phoneNumber);
-        $("#email").val(response.email);
-        $("#birthDate").val(response.birthDate);
+
+        let userData = response;
+        $("#name").val(userData.name);
+        $("#lastName").val(userData.lastName);
+        $("#motherLastName").val(userData.motherLastName);
+        $("#phoneNumber").val(userData.phoneNumber);
+        $("#email").val(userData.email);
+        $("#birthDate").val(userData.birthDate);
         $("#district").empty()
 
-        // getData('/cantons/' + provinceId, function (response) {
-        //     $.each(response, function () {
-        //         $("#canton").append($('<option>').val(this.id).text(this.name));
-        //     });
-        // });
-        //
-        // getData('/districts/' + cantonId, function (response) {
-        //     $.each(response, function () {
-        //         $("#district").append($('<option>').val(this.id).text(this.name));
-        //     });
-        // });
+        response = null;
 
-        $('#district[value="' + response.district_id + '"]').prop("selected", true);
+        let provinceCantonUrl = '/users/provincecanton/' + id;
+        getData(provinceCantonUrl, function (response) {
 
+            let result = response;
+            $("#province").children('[value=' + result.province + ']').attr('selected', true);
+
+            getData('/cantons/' + result.province, function (response) {
+                $.each(response, function () {
+                    $("#canton").append($('<option>').val(this.id).text(this.name));
+                });
+
+                $("#canton").children('[value=' + result.canton + ']').attr('selected', true);
+            });
+
+            getData('/districts/' + result.canton, function (response) {
+                $.each(response, function () {
+                    $("#district").append($('<option>').val(this.id).text(this.name));
+                });
+
+                $("#district").children('[value=' + userData.district_id + ']').attr('selected', true);
+            });
+        });
 
         $("#addUserModal").css('display',"block");
     })

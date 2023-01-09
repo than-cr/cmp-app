@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Canton;
+use App\Models\District;
+use App\Models\Province;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -93,5 +96,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getUserProvinceAndCantonByUserId($id)
+    {
+        $user = User::find($id);
+        $district = District::find($user->district_id);
+        $canton = Canton::find($district->canton_id);
+        $province = Province::find($canton->province_id);
+
+        $userProvinceCanton = ['province' => $province->id, 'canton'  => $canton->id];
+
+        return response($userProvinceCanton);
     }
 }
