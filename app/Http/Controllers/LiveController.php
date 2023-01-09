@@ -8,6 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LiveController extends Controller
@@ -121,20 +122,20 @@ class LiveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return JsonResponse
+     * @param  int  $id
+     * @return RedirectResponse
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy($id): RedirectResponse
     {
         try {
             $live = Live::find($id);
-
             $live->delete();
 
-            return response()->json('Live eliminado exitosamente');
+
         } catch (\Throwable $exception) {
             report($exception);
-            return response()->json('Error eliminando el live', 500);
         }
+
+        return redirect()->route('lives.index');
     }
 }

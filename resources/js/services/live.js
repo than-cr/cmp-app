@@ -1,7 +1,9 @@
-import {getData, postData, saveData, showErrorAlert, showSuccessAlert} from "../common";
+import {deleteData, getData, postData, saveData, showErrorAlert, showSuccessAlert} from "../common";
 
 $(document).ready(function () {
     function clearAndCloseModal() {
+        $("#_identifier").val("0");
+        $("#_update").val("false");
         $("#name").val("");
         $("#identifier").val("");
         $("#date").val("");
@@ -17,6 +19,10 @@ $(document).ready(function () {
 
     $("#btnCloseAddModal").click(function () {
         clearAndCloseModal();
+    });
+
+    $("#btnCloseDeleteModal").click(function () {
+        $("#deleteModal").css('display',"none");
     });
 
     $("#btnSaveAddLive").click(function (event) {
@@ -43,9 +49,15 @@ $(document).ready(function () {
 
         saveData(token, url , jsonData, isUpdate, function (response) {
             if (response.status == null) {
-                showSuccessAlert(function () {location.reload();});
+                showSuccessAlert(function () {
+                    clearAndCloseModal();
+                    location.reload();}
+                );
             } else {
-                showErrorAlert();
+                showErrorAlert(function () {
+                    clearAndCloseModal();
+                    location.reload();}
+                );
             }
             clearAndCloseModal();
         });
@@ -65,4 +77,9 @@ window.getLiveData = function (id) {
 
         $("#addLiveModal").css('display',"block");
     });
+}
+
+window.deleteLive = function (id) {
+    $('#deleteForm').attr('action', '/lives/' + id);
+    $("#deleteModal").css('display',"block");
 }

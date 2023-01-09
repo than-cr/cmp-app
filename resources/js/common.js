@@ -70,6 +70,28 @@ export function updateData(token, url, jsonData, callback) {
     });
 }
 
+export function deleteData(token, url, jsonData, callback) {
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', token);
+        }
+    });
+    $.ajax({
+        url: url,
+        type: "DELETE",
+        contentType: "application/json; charset=utf-8",
+        data: jsonData,
+        success: function (response) {
+            if (callback) {
+                callback(response);
+            }
+        },
+        error: function () {
+            showErrorAlert();
+        }
+    });
+}
+
 export function saveData(token, url, jsonData, update, callback) {
     if (update) {
         updateData(token, url, jsonData, callback);

@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CantonController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
@@ -48,6 +49,7 @@ Route::middleware(['auth', 'permission'])->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('lives', LiveController::class);
+
 });
 
 require __DIR__.'/auth.php';
