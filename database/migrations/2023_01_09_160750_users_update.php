@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('address', 1024);
-            $table->boolean('gedeon');
-            $table->boolean('gedeonModality'); // Changing from int to float, ie.
+            $table->string('address', 1024)->nullable();
+            $table->boolean('gedeon')->nullable();
+            $table->boolean('gedeonModality')->nullable(); // Changing from int to float, ie.
         });
     }
 
