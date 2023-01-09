@@ -34,7 +34,7 @@ Route::get('/info', function () {
 
 Route::get('/cantons/{provinceId}', [CantonController::class, 'getByProvinceId'])->name('canton.getByProvinceId');
 Route::get('/districts/{cantonId}', [DistrictController::class, 'getByCantonId'])->name('district.getByCantonId');
-
+Route::get('/district/{districtId}', [DistrictController::class, 'getById'])->name('district.getById');
 
 Route::middleware(['auth', 'permission'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

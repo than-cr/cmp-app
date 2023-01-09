@@ -13,4 +13,11 @@ class DistrictController extends Controller
 
         return response()->json($districts)->setStatusCode(Response::HTTP_OK, Response::$statusTexts[Response::HTTP_OK]);
     }
+
+    public function getById($id)
+    {
+        $district = District::find($id);
+
+        return response()->json($district);
+    }
 }

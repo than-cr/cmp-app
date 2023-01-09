@@ -59,6 +59,24 @@
                                 </div>
                             </td>
 
+                            <td class="content-center" style="width: 20%">
+                                <div class="flex items-center pl-5">
+                                    <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Fecha de nacimiento</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+                                    </svg>
+                                </div>
+                            </td>
+
+                            <td class="content-center" style="width: 20%">
+                                <div class="flex items-center pl-5">
+                                    <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Distrito</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+                                    </svg>
+                                </div>
+                            </td>
+
                             <td class="text-center">
                                 <div class="flex items-center pl-5">
                                     <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Acción</p>
@@ -106,8 +124,19 @@
 
                                 <td class="">
                                     <div class="flex items-center pl-5">
-                                        <button id="btnShowUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getLiveData({{ $user->id }})">Mostrar</button>
-                                        <button id="btnEditUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getLiveData({{ $user->id }})">Editar</button>
+                                        <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{!! ucfirst(\Carbon\Carbon::createFromDate($user->birthDate)->translatedFormat('d M Y')) !!}</p>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="flex items-center pl-5">
+                                        <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->district->name }}</p>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="flex items-center pl-5">
+                                        <button id="btnEditUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getUserData({{ $user->id }})">Editar</button>
                                     </div>
                                 </td>
                             </tr>
@@ -126,7 +155,7 @@
         <!--modal content-->
         <div class="relative top-20 mx-auto p-5 border w-1/4 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
-                <form method="POST" action="{{ route('lives.store') }}">
+                <form method="POST" action="{{ route('users.store') }}">
                     <input type="hidden" id="_update" value="false" />
                     <input type="hidden" id="_identifier" value="0" />
                     @csrf
@@ -138,38 +167,60 @@
                     <br>
 
                     <div class="flex flex-col lg:mr-16">
-                        <label for="identifier" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Apellido</label>
-                        <input id="identifier" name="identifier" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required placeholder="Identificador" />
+                        <label for="lastName" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Apellido</label>
+                        <input id="lastName" name="lastName" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required placeholder="Identificador" />
                     </div>
                     <br>
 
                     <div class="flex flex-col lg:mr-16">
-                        <label for="date" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Apellido</label>
-                        <input type="date" id="date" name="date" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
+                        <label for="motherLastName" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Apellido</label>
+                        <input id="motherLastName" name="motherLastName" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
                     </div>
                     <br>
 
                     <div class="flex flex-col lg:mr-16">
-                        <label for="time" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Teléfono</label>
-                        <input type="time" id="time" name="time" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
+                        <label for="phoneNumber" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Teléfono</label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
                     </div>
                     <br>
 
                     <div class="flex flex-col lg:mr-16">
-                        <label for="time" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Correo electrónico</label>
-                        <input type="time" id="time" name="time" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
+                        <label for="email" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Correo electrónico</label>
+                        <input type="email" id="email" name="email" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
                     </div>
                     <br>
 
                     <div class="flex flex-col lg:mr-16">
-                        <label for="time" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Fecha de nacimiento</label>
-                        <input type="time" id="time" name="time" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
+                        <label for="birthDate" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Fecha de nacimiento</label>
+                        <input type="date" id="birthDate" name="birthDate" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
                     </div>
                     <br>
 
                     <div class="flex flex-col lg:mr-16">
-                        <label for="time" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Distrito</label>
-                        <input type="time" id="time" name="time" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
+                        <label for="province" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Provincia</label>
+                        <select id="province" name="province" required class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow">
+                            <option value="1">San José</option>
+                            <option value="2">Alajuela</option>
+                            <option value="3">Cartago</option>
+                            <option value="4">Heredia</option>
+                            <option value="5">Guanacaste</option>
+                            <option value="6">Puntarenas</option>
+                            <option value="7">Limón</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="flex flex-col lg:mr-16">
+                        <label for="canton" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Cantón</label>
+                        <select id="canton" name="canton" required class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow">
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="flex flex-col lg:mr-16">
+                        <label for="district" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Distrito</label>
+                        <select id="district" name="district" required class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow">
+                        </select>
                     </div>
                     <br>
 

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -46,11 +47,18 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show($id): JsonResponse
     {
-        //
+        try {
+            $user = User::find($id);
+            return response()->json($user);
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error al obtener usuario.', 500);
+        }
+
     }
 
     /**

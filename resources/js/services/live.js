@@ -65,7 +65,7 @@ $(document).ready(function () {
 });
 
 window.getLiveData = function (id) {
-    const url = 'lives/' + id + '/edit'
+    const url = '/lives/' + id + '/edit'
     $("#_identifier").val(id);
 
     getData(url, function (response) {
