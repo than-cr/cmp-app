@@ -77,6 +77,33 @@
                                 </div>
                             </td>
 
+                            <td class="content-center" style="width: 20%">
+                                <div class="flex items-center pl-5">
+                                    <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Dirección</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+                                    </svg>
+                                </div>
+                            </td>
+
+                            <td class="content-center" style="width: 20%">
+                                <div class="flex items-center pl-5">
+                                    <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Asiste a Gedeón</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+                                    </svg>
+                                </div>
+                            </td>
+
+                            <td class="content-center" style="width: 20%">
+                                <div class="flex items-center pl-5">
+                                    <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Modalidad</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+                                    </svg>
+                                </div>
+                            </td>
+
                             <td class="text-center">
                                 <div class="flex items-center pl-5">
                                     <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Acción</p>
@@ -131,6 +158,29 @@
                                 <td class="">
                                     <div class="flex items-center pl-5">
                                         <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->district->name }}</p>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="flex items-center pl-5">
+                                        <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->address }}</p>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="flex items-center pl-5">
+                                        <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->gedeon == 1 ? "Sí" : "No" }}</p>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="flex items-center pl-5">
+                                        @if($user->gedeon == 1)
+                                            <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->gedeonModality == 1 ? "Presencial" : "Virtual" }}</p>
+                                        @else
+                                            <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">No aplica</p>
+                                        @endif
+
                                     </div>
                                 </td>
 
@@ -221,6 +271,24 @@
                         <label for="district" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Distrito</label>
                         <select id="district" name="district" required class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow">
                         </select>
+                    </div>
+                    <br>
+
+                    <div class="flex flex-col lg:mr-16">
+                        <label for="address" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Dirección</label>
+                        <input id="address" name="address" autocomplete="off" class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow" required/>
+                    </div>
+                    <br>
+
+                    <div class="flex flex-col lg:mr-16">
+                        <label for="gedeon" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">¿Desea participar en Gedeón?</label>
+                        <input type="checkbox" id="gedeon" name="gedeon" autocomplete="off" value="1" required/>
+                    </div>
+                    <br>
+
+                    <div class="flex flex-col lg:mr-16" id="gedeonModalityDiv">
+                        <label for="gedeonModality" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">¿Desea participar presencialmente?</label>
+                        <input type="checkbox" id="gedeonModality" name="gedeonModality" autocomplete="off" value="1" required/>
                     </div>
                     <br>
 

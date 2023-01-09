@@ -94,7 +94,11 @@ class UserController extends Controller
                 'email' => 'required|string|email|max:255|unique:users,email,'.$id,
                 'phoneNumber' => 'required|digits:8',
                 'birthDate' => 'required|date',
-                'district_id' => 'required|numeric|between:1,489']);
+                'district_id' => 'required|numeric|between:1,489',
+                'address' => 'required|string|max:1024',
+                'gedeon' => 'required|boolean',
+                'gedeonModality' => 'required|boolean',
+                ]);
 
             $user =  User::find($id);
             $user->update($request->all());

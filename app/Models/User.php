@@ -30,6 +30,9 @@ class User extends Authenticatable
         'phoneNumber',
         'birthDate',
         'district_id',
+        'address',
+        'gedeon',
+        'gedeonModality',
         'password',
     ];
 

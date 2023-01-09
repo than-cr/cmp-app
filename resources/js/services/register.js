@@ -1,4 +1,4 @@
-import {getData, showSuccess} from "../common";
+import {getData} from "../common";
 
 $(document).ready(function () {
 
@@ -30,4 +30,9 @@ $(document).ready(function () {
             });
         }
     });
+
+    $("#gedeon").change(function () {
+        $("#gedeonModality").val() == "1" ? $("#gedeonModality").val("0") : $("#gedeonModality").val("1");
+        $("#gedeonModDiv").toggle("hidden");
+    })
 });

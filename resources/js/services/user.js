@@ -40,6 +40,9 @@ $(document).ready(function () {
         $("#birthDate").val("");
         $("#canton").empty().append($('<option>').val("").text('--Seleccionar--'));
         $("#district").empty().append($('<option>').val("").text('--Seleccionar--'));
+        $("#address").val("");
+        $("#gedeon").val("");
+        $("#gedeonModality").val("");
         $("#addUserModal").css('display',"none");
     }
 
@@ -91,7 +94,10 @@ $(document).ready(function () {
             "phoneNumber" : $("#phoneNumber").val(),
             "email" : $("#email").val(),
             "birthDate" : $("#birthDate").val(),
-            "district_id" : $("#district").val()
+            "district_id" : $("#district").val(),
+            "address" : $("#address").val(),
+            "gedeon" : $("#gedeon").is(':checked'),
+            "gedeonModality" : $("#gedeonModality").is(':checked')
         };
 
         const token =  $('input[name="_token"]').val();
@@ -132,7 +138,14 @@ window.getUserData = function (id) {
         $("#phoneNumber").val(userData.phoneNumber);
         $("#email").val(userData.email);
         $("#birthDate").val(userData.birthDate);
-        $("#district").empty()
+        $("#district").empty();
+        $("#address").val(userData.address);
+
+        userData.gedeon == 1 ? $("#gedeon").prop("checked", true) : $("#gedeon").prop("checked", false);
+        userData.gedeonModality == 1 ? $("#gedeonModality").prop("checked", true) : $("#gedeonModality").prop("checked", false);
+
+        $("#gedeon").val(userData.gedeon);
+        $("#gedeonModality").val(userData.gedeonModality);
 
         response = null;
 

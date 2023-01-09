@@ -46,6 +46,9 @@ class RegisteredUserController extends Controller
             'province' => ['required', 'numeric', 'between:1,7'],
             'canton' => ['required', 'numeric', 'between:1,84'],
             'district' => ['required', 'numeric', 'between:1,489'],
+            'address' => ['required', 'string', 'max:1024'],
+            'gedeon' => ['required', 'boolean'],
+            'gedeonModality' => ['required', 'boolean'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -57,6 +60,9 @@ class RegisteredUserController extends Controller
             'phoneNumber' => $request->phoneNumber,
             'birthDate' => $request->birthDate,
             'district_id' => $request->district,
+            'address' => $request->address,
+            'gedeon' => $request->gedeon,
+            'gedeonModality' => $request->gedeonModality,
             'password' => Hash::make($request->password),
         ]);
 
