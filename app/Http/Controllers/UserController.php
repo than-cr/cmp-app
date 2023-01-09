@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Canton;
 use App\Models\District;
+use App\Models\Model_has_roles;
 use App\Models\Province;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -114,7 +117,7 @@ class UserController extends Controller
         //
     }
 
-    public function getUserProvinceAndCantonByUserId($id)
+    public function getUserProvinceAndCantonByUserId($id): Response|Application|ResponseFactory
     {
         $user = User::find($id);
         $district = District::find($user->district_id);
@@ -124,5 +127,26 @@ class UserController extends Controller
         $userProvinceCanton = ['province' => $province->id, 'canton'  => $canton->id];
 
         return response($userProvinceCanton);
+    }
+
+    public function getUserRole($id)
+    {
+        $modelHasRole = Model_has_roles::where('model_id', $id);
+        return response()->json($modelHasRole);
+    }
+
+    public function assignRoleToUser(Request $request): JsonResponse
+    {
+        try {
+            $user = User::find($request->model_id);
+            $role = Role::findById($request->role_id);
+
+            $user->syncRoles([$role->id]);
+
+            return response()->json('Rol asignado correctamente.');
+        } catch (\Throwable $exception) {
+            report($exception);
+            return response()->json('Error asignando rol', 500);
+        }
     }
 }

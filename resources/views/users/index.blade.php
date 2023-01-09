@@ -137,6 +137,7 @@
                                 <td class="">
                                     <div class="flex items-center pl-5">
                                         <button id="btnEditUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getUserData({{ $user->id }})">Editar</button>
+                                        <button id="btnEditUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="assignRole({{ $user->id }})">Rol</button>
                                     </div>
                                 </td>
                             </tr>
@@ -144,7 +145,6 @@
                         </tbody>
                     </table>
                     <br>
-{{--                    <button id="addUserBtn" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded text-white" >Crear Usuario</button>--}}
                 </div>
             </div>
         </div>
@@ -237,7 +237,35 @@
         </div>
     </div>
 
-    @include('layouts.delete')
+    <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="assignRoleModal">
+        <!--modal content-->
+        <div class="relative top-20 mx-auto p-5 border w-1/4 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <form method="POST">
+                    <input type="hidden" id="_update" value="true" />
+                    <input type="hidden" id="_id" value="0" />
+                    @csrf
+                    <br>
+
+                    <div class="flex flex-col lg:mr-16">
+                        <label for="role" class="text-gray-800 dark:text-gray-100 text-sm font-bold leading-tight tracking-normal mb-2 text-left">Rol</label>
+                        <select id="role" name="role" required class="text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 dark:focus:border-indigo-700 dark:border-gray-700 dark:bg-gray-800 bg-white font-normal w-64 h-10 flex items-center pl-3 text-sm border-gray-300 rounded border shadow">
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button id="btnSaveUserRole" type="submit" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded" >
+                            <p class="text-sm font-medium leading-none text-white">Guardar</p>
+                        </button>
+                        <button id="btnCloseRoleModal" type="button" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-gray-100 hover:bg-blue-600 focus:outline-none rounded">
+                            <p class="text-sm font-medium leading-none text-gray-800">Cancelar</p>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 @endsection
 

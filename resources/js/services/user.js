@@ -47,6 +47,40 @@ $(document).ready(function () {
         clearAndCloseModal();
     });
 
+    $("#btnCloseRoleModal").click(function () {
+        $("#role").empty().append($('<option>').val("").text('--Seleccionar--'));
+        $("#assignRoleModal").css('display',"none");
+    });
+
+    $("#btnSaveUserRole").click(function () {
+        event.preventDefault();
+
+        let object = {
+            "model_id" : $("#_id").val(),
+            "role_id" : $("#role").val(),
+        };
+
+        const token =  $('input[name="_token"]').val();
+        let jsonData = JSON.stringify(object);
+
+        let url = '/users/userRole'
+
+        saveData(token, url, jsonData, false, function (response) {
+            if (response.status == null) {
+                showSuccessAlert(function () {
+                    clearAndCloseModal();
+                    location.reload();}
+                );
+            } else {
+                showErrorAlert(function () {
+                    clearAndCloseModal();
+                    location.reload();}
+                );
+            }
+            clearAndCloseModal();
+        })
+    });
+
     $("#btnSaveUser").click(function () {
         event.preventDefault();
 
@@ -127,4 +161,23 @@ window.getUserData = function (id) {
 
         $("#addUserModal").css('display',"block");
     })
+}
+
+window.assignRole = function (id) {
+    let url = '/roles/all'
+    $("#role").empty();
+    getData(url, function (response) {
+        $.each(response, function () {
+            $("#role").append($('<option>').val(this.id).text(this.name));
+        });
+    });
+
+    url = '/users/userRole/' + id;
+    getData(url, function (response) {
+        $("#role").children('[value=' + response.role_id + ']').attr('selected', true);
+    })
+
+    $("#_id").val(id);
+
+    $("#assignRoleModal").css('display',"block");
 }

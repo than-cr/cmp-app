@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -25,9 +26,9 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function create(): \Illuminate\Http\JsonResponse
+    public function create(): JsonResponse
     {
         $permissions = Permission::get();
         return response()->json($permissions);
@@ -96,5 +97,11 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getRoles(): JsonResponse
+    {
+        $role = Role::all();
+        return response()->json($role);
     }
 }
