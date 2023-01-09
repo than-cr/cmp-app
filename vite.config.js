@@ -15,7 +15,9 @@ export default defineConfig({
                 'resources/js/services/register.js',
                 'resources/js/services/navigation.js',
                 'resources/js/services/role.js',
-                'resources/js/services/live.js'
+                'resources/js/services/live.js',
+                'resources/js/services/dashboard.js',
+                'resources/js/services/user.js'
             ],
             refresh: true,
         }),

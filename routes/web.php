@@ -37,15 +37,12 @@ Route::get('/districts/{cantonId}', [DistrictController::class, 'getByCantonId']
 
 
 Route::middleware(['auth', 'permission'])->group(function () {
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-});
-
-Route::middleware(['auth', 'permission'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
+    Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('lives', LiveController::class);

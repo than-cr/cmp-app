@@ -46,21 +46,8 @@
 
                                        <td class="">
                                            <div class="flex items-center pl-5">
-                                               <a href="{{ route('roles.show', $role->id) }}"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Mostrar</a>
-                                           </div>
-                                       </td>
-
-                                       <td class="">
-                                           <div class="flex items-center pl-5">
-                                               <a href="{{ route('roles.edit', $role->id) }}"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Editar</a>
-                                           </div>
-                                       </td>
-
-                                       <td class="">
-                                           <div class="flex items-center pl-5">
-                                               {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                                               {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                                               {!! Form::close() !!}
+                                               <button id="btnEditRole"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getRoleData({{ $role->id }})">Editar</button>
+                                               <button id="btnDeleteRole" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="deleteRole({{ $role->id }})">Eliminar</button>
                                            </div>
                                        </td>
                                    </tr>
@@ -141,7 +128,6 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
