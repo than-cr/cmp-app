@@ -6,6 +6,7 @@ $(document).ready(function () {
         let provinceId = $("#province").val();
 
         $("#canton").empty().append($('<option>').val("").text('--Seleccionar--'));
+        $("#district").empty().append($('<option>').val("").text('--Seleccionar--'));
 
         if (provinceId != "") {
             getData('/cantons/' + provinceId, function (response) {
