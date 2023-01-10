@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-max mx-auto lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-blue-700">
                     {{ __("Usuarios") }}
@@ -186,8 +186,12 @@
 
                                 <td class="">
                                     <div class="flex items-center pl-5">
+                                        @can('users.edit')
                                         <button id="btnEditUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getUserData({{ $user->id }})">Editar</button>
-                                        <button id="btnEditUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="assignRole({{ $user->id }})">Rol</button>
+                                        @endcan
+                                        @can('user.assignRoleToUser')
+                                            <button id="btnEditUser"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="assignRole({{ $user->id }})">Rol</button>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

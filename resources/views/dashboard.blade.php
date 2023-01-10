@@ -38,8 +38,15 @@
                                 </div>
                                 <div class="relative">
                                     <ul id="list" class="hidden font-normal text-base leading-4 absolute top-2 w-full rounded shadow-md z-20">
-                                        <a href="{{ url('/lives') }}"><li class="px-4 py-3 text-gray-600 bg-gray-50 border border-gray-50 focus:outline-none focus:bg-gray-100 hover:bg-gray-100 duration-100 cursor-pointer text-sm leading-3 font-normal focus:text-black">Transmisiones</li></a>
-                                        <a href="{{ url('/roles') }}"><li class="px-4 py-3 text-gray-600 bg-gray-50 border border-gray-50 focus:outline-none focus:bg-gray-100 hover:bg-gray-100 duration-100 cursor-pointer text-sm leading-3 font-normal focus:text-black">Roles</li></a>
+                                        @can('lives.index')
+                                            <a href="{{ url('/lives') }}"><li class="px-4 py-3 text-gray-600 bg-gray-50 border border-gray-50 focus:outline-none focus:bg-gray-100 hover:bg-gray-100 duration-100 cursor-pointer text-sm leading-3 font-normal focus:text-black">Transmisiones</li></a>
+                                        @endcan
+                                        @can('roles.index')
+                                            <a href="{{ url('/roles') }}"><li class="px-4 py-3 text-gray-600 bg-gray-50 border border-gray-50 focus:outline-none focus:bg-gray-100 hover:bg-gray-100 duration-100 cursor-pointer text-sm leading-3 font-normal focus:text-black">Roles</li></a>
+                                        @endcan
+                                        @can('users.index')
+                                            <a href="{{ url('/users') }}"><li class="px-4 py-3 text-gray-600 bg-gray-50 border border-gray-50 focus:outline-none focus:bg-gray-100 hover:bg-gray-100 duration-100 cursor-pointer text-sm leading-3 font-normal focus:text-black">Usuarios</li></a>
+                                        @endcan
                                     </ul>
                                 </div>
                             </div>
