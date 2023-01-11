@@ -1,37 +1,22 @@
-import {getData, postData, showErrorAlert, showSuccessAlert} from "../common";
+import {getData, postData, saveData, showErrorAlert, showSuccessAlert} from "../common";
 
 $(document).ready(function () {
 
     function clearAndCloseModal() {
-        $("[name*='row']").remove();
+        $("#_identifier").val("0");
+        $("#_update").val("false");
+        $("#all_permission").prop('checked', false);
+        $("[name*='permission']").prop('checked', false);
         $("#addRoleModal").css('display',"none");
     }
 
     $("#addRoleBtn").on('click', function () {
-        getData('/roles/create', function (response) {
-            let tableBody = $("#tbody");
-            let index = 0;
-            $.each(response, function () {
-                tableBody.append(
-                    '<tr name="row' + index + '">' +
-                    '<td><div className="ml-5"><div className="bg-gray-200 dark:bg-gray-800  rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">' +
-                    '<input placeholder="checkbox" type="checkbox" className="focus:opacity-100 checkbox w-full h-full permission" name="permission[' + this.name + ']" value="' + this.name + '" />' +
-                    '<div className="check-icon hidden bg-indigo-700 text-white rounded-sm"><img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/tasks-svg7.svg" alt="check-icon"></div></div></div>' +
-                    '</td>' +
-                    '<td>' +
-                    '<div class="flex items-center pl-5">' +
-                    '<p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">' + this.name +'</p>' +
-                    '</div>' +
-                    '</td>' +
-                    '<td>' +
-                    '<div class="flex items-center pl-5">' +
-                    '<p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">' + this.guard_name +'</p>' +
-                    '</div>' +
-                    '</td>' +
-                    '</tr>');
-            });
-        });
+        $("#_update").val("false");
+        $("#_identifier").val("0");
 
+        $("[name*='row']").prop('checked', false);
+
+        $("#saveRoleLabel").text("Crear Rol");
         $("#addRoleModal").css('display',"block");
     });
 
@@ -56,11 +41,24 @@ $(document).ready(function () {
 
         const token =  $('input[name="_token"]').val();
         let jsonData = JSON.stringify(object);
-        postData(token, '/roles', jsonData, function (response) {
+
+        let isUpdate = $("#_update").val() == "true";
+
+        let url = '/roles'
+        if (isUpdate)
+        {
+            url += '/' + $("#_identifier").val();
+        }
+
+        saveData(token, url, jsonData, isUpdate, function (response) {
             if (response.status == null) {
-                showSuccessAlert();
+                showSuccessAlert(function () {
+                    location.reload();
+                });
             } else {
-                showErrorAlert();
+                showErrorAlert(function () {
+                    location.reload();
+                });
             }
             clearAndCloseModal();
         });
@@ -81,4 +79,26 @@ $(document).ready(function () {
     });
 });
 
+window.getRole = function (id)
+{
+    let url = '/roles/' + id + '/edit'
+
+    $("#_identifier").val(id);
+    $("#_update").val("true");
+
+    getData(url, function (response) {
+        const nameIndex = 0;
+        const permissionIndex = 1;
+
+        $("#name").val(response[nameIndex].name);
+
+        $.each(response[permissionIndex], function () {
+            $("[name='permission[" + this + "]").prop("checked", true);
+        });
+    });
+
+    $("#saveRoleLabel").text("Actualizar Rol");
+
+    $("#addRoleModal").css('display',"block");
+}
 

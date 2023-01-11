@@ -20,7 +20,8 @@ class RoleController extends Controller
     public function index(Request $request): View|Factory|Application
     {
         $roles = Role::orderBy('id', 'DESC')->paginate(20);
-        return view('roles.index', compact('roles'))->with('index', ($request->input('page', 1) - 1) * 20);
+        $permissions = Permission::all();
+        return view('roles.index', compact('roles', 'permissions'));
     }
 
     /**
@@ -30,8 +31,6 @@ class RoleController extends Controller
      */
     public function create(): JsonResponse
     {
-        $permissions = Permission::get();
-        return response()->json($permissions);
     }
 
     /**
@@ -73,7 +72,17 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        try
+        {
+            $role = Role::findById($id);
+            $role->permissions();
+            return response()->json([$role,$role->permissions()->pluck('name')->toArray()]);
+        }
+        catch (\Throwable $exception)
+        {
+            report($exception);
+            return response()->json("Error al obtener información del rol.", 500);
+        }
     }
 
     /**
@@ -85,7 +94,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $this->validate($request, [
+                'name' => 'required',
+                'permission' => 'required',
+            ]);
+
+            $role = Role::findById($id);
+
+            $role->update($request->only('name'));
+            $role->syncPermissions($request->get('permission'));
+        }
+        catch (\Throwable $exception)
+        {
+            report($exception);
+            return response()->json("Error actualizando rol.", 500);
+        }
     }
 
     /**
