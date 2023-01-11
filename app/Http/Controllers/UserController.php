@@ -135,7 +135,7 @@ class UserController extends Controller
 
     public function getUserRole($id)
     {
-        $modelHasRole = Model_has_roles::where('model_id', $id);
+        $modelHasRole = Model_has_roles::where('model_id', $id)->get();
         return response()->json($modelHasRole);
     }
 

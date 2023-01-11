@@ -183,12 +183,12 @@ window.assignRole = function (id) {
         $.each(response, function () {
             $("#role").append($('<option>').val(this.id).text(this.name));
         });
-    });
 
-    url = '/users/userRole/' + id;
-    getData(url, function (response) {
-        $("#role").children('[value=' + response.role_id + ']').attr('selected', true);
-    })
+        url = '/users/userRole/' + id;
+        getData(url, function (response) {
+            $("#role").children('[value=' + response[0].role_id + ']').attr('selected', true);
+        })
+    });
 
     $("#_id").val(id);
 
