@@ -67,10 +67,10 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function edit($id)
+    public function edit(int $id): JsonResponse
     {
         try
         {

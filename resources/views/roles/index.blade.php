@@ -46,8 +46,10 @@
 
                                        <td class="">
                                            <div class="flex items-center pl-5">
+                                               @can('roles.update')
                                                <button id="btnEditRole"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="getRole({{ $role->id }})">Editar</button>
-                                               <button id="btnDeleteRole" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="deleteRole({{ $role->id }})">Eliminar</button>
+                                               @endcan
+{{--                                               <button id="btnDeleteRole" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="deleteRole({{ $role->id }})">Eliminar</button>--}}
                                            </div>
                                        </td>
                                    </tr>
@@ -55,7 +57,9 @@
                            </tbody>
                        </table>
                        <br>
-                    <button id="addRoleBtn" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded text-white" >Crear rol</button>
+                    @can('roles.store')
+                        <button id="addRoleBtn" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded text-white" >Crear rol</button>
+                    @endcan
                 </div>
             </div>
         </div>
