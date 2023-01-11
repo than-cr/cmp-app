@@ -175,12 +175,6 @@
 
                                 <td class="">
                                     <div class="flex items-center pl-5">
-                                        <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->district->canton->province->name }}</p>
-                                    </div>
-                                </td>
-
-                                <td class="">
-                                    <div class="flex items-center pl-5">
                                         <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->gedeon == 1 ? "Sí" : "No" }}</p>
                                     </div>
                                 </td>
@@ -193,6 +187,12 @@
                                             <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">No aplica</p>
                                         @endif
 
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="flex items-center pl-5">
+                                        <p class="text-base font-medium leading-none text-gray-700 dark:text-white  mr-2">{{ $user->district->canton->province->name }}</p>
                                     </div>
                                 </td>
 
