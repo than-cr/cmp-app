@@ -84,6 +84,11 @@
 
                         <br>
 
+                        <div class="flex items-center space-x-4">
+                            <button id="btnChangeView" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Cambiar Vista</button>
+                            <button id="btnPrev" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Anterior</button>
+                            <button id="btnNext" class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center">Siguiente</button>
+                        </div>
                         <!-- Calendar -->
                         <div id="calendar" style="height: 600px;"></div>
 

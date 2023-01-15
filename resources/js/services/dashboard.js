@@ -26,17 +26,16 @@ const options = {
     month: {
         taskView: false,
         startDayOfWeek: 1,
-        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+        dayNames: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb' ],
     },
     week: {
         taskView: false,
         startDayOfWeek: 1,
-        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+        dayNames: ['', '', '', '', '', '', '' ],
     },
     isReadOnly: true,
     useDetailPopup: true,
     useFormPopup: false,
-
 };
 
 const calendar = new Calendar(container, options);
@@ -135,3 +134,25 @@ window.selectNew = function() {
     document.getElementById("ArrowSVG").classList.toggle("rotate-180");
 };
 
+document.getElementById('btnChangeView').addEventListener('click', function() {
+    switch (calendar.getViewName())
+    {
+        case "day":
+            calendar.changeView("month");
+            break;
+        case "month":
+            calendar.changeView("week");
+            break;
+        case "week":
+            calendar.changeView("day");
+            break;
+    }
+});
+
+document.getElementById('btnNext').addEventListener('click', function() {
+    calendar.next();
+});
+
+document.getElementById('btnPrev').addEventListener('click', function() {
+    calendar.prev();
+});
