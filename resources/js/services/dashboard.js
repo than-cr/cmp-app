@@ -18,7 +18,7 @@ const options = {
         {
             id: 'cal1',
             name: 'activities',
-            backgroundColor: '#fff',
+            backgroundColor: '#git ',
             color: '#1D4ED8',
             borderColor: '#1D4ED8'
         },
