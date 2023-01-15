@@ -93,7 +93,7 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Contraseña')" />
-
+            <p class="text-gray-500">Debe tener mínimo 8 caracteres</p>
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"

@@ -1,4 +1,5 @@
 import Calendar from '@toast-ui/calendar';
+import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
@@ -18,7 +19,8 @@ const options = {
             id: 'cal1',
             name: 'activities',
             backgroundColor: '#fff',
-            color: '#1D4ED8'
+            color: '#1D4ED8',
+            borderColor: '#1D4ED8'
         },
     ],
     month: {
@@ -34,6 +36,7 @@ const options = {
     isReadOnly: true,
     useDetailPopup: true,
     useFormPopup: false,
+
 };
 
 const calendar = new Calendar(container, options);
