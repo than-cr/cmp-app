@@ -26,8 +26,13 @@ const options = {
         startDayOfWeek: 1,
         dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
     },
+    week: {
+        taskView: false,
+        startDayOfWeek: 1,
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+    },
     isReadOnly: true,
-    useDetailPopup: false,
+    useDetailPopup: true,
     useFormPopup: false,
 };
 
