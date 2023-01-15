@@ -47,8 +47,8 @@ class RegisteredUserController extends Controller
             'canton' => ['required', 'numeric', 'between:1,84'],
             'district' => ['required', 'numeric', 'between:1,489'],
             'address' => ['required', 'string', 'max:1024'],
-            'gedeon' => ['required', 'boolean'],
-            'gedeonModality' => ['required', 'boolean'],
+            'gedeon' => ['boolean'],
+            'gedeonModality' => ['boolean'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -61,8 +61,8 @@ class RegisteredUserController extends Controller
             'birthDate' => $request->birthDate,
             'district_id' => $request->district,
             'address' => $request->address,
-            'gedeon' => $request->gedeon,
-            'gedeonModality' => $request->gedeonModality,
+            'gedeon' => $request->gedeon == true ? true : false,
+            'gedeonModality' => $request->gedeonModality == true ? true : false,
             'password' => Hash::make($request->password),
         ]);
 
