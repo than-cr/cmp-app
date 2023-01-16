@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="p-6 text-blue-700">
-                       <table class="w-full whitespace-nowrap">
+                       <table class="w-full whitespace-nowrap" style="display: block ;overflow-x: auto;">
                            <tbody>
                                <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 dark:border-gray-600 rounded">
 
