@@ -221,7 +221,7 @@ calendar.createEvents([
         calendarId: 'cal1',
         title: 'Culto de oración (Virtual)',
         start: '2023-02-28T19:10:00',
-        end: '2023-02-28T28:30:00',
+        end: '2023-02-28T20:30:00',
     }
 ]);
 
