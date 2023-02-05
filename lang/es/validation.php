@@ -119,7 +119,7 @@ return [
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
 
 
-    /* TRADUCIR */
+    /************** TRADUCIR *****************/
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'ascii' => 'The :attribute must only contain single-byte alphanumeric characters and symbols.',
     'current_password' => 'The password is incorrect.',
