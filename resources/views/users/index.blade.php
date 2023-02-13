@@ -9,6 +9,10 @@
                     {{ __("Usuarios") }}
                 </div>
 
+                @if(!$showAll)
+                    <button id="btnShowAll"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="location.href = '/users/showAll' ">Ver todos</button>
+                @endif
+
                 <div class="p-6 text-blue-700">
                     <div class="hidden md:flex flex-auto space-x-2">
                         <table class="w-full whitespace-nowrap" style="display: block ;overflow-x: auto;">
@@ -213,7 +217,9 @@
                             </tbody>
                         </table>
                     </div>
-                    {{ $users->links() }}
+                    @if(!$showAll)
+                        {{ $users->links() }}
+                    @endif
                     <br>
                 </div>
             </div>

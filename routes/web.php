@@ -42,6 +42,7 @@ Route::middleware(['auth', 'permission'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/users/userRole', [UserController::class, 'assignRoleToUser'])->name('user.assignRoleToUser');
+    Route::get('/users/showAll', [UserController::class, 'showAll'])->name('user.showAll');
     Route::get('/users/userRole/{userId}', [UserController::class, 'getUserRole'])->name('user.getUserRole');
     Route::get('/users/provincecanton/{userId}', [UserController::class, 'getUserProvinceAndCantonByUserId'])->name('user.getUserProvinceAndCantonByUserId');
     Route::get('/roles/all', [RoleController::class, 'getRoles'])->name('roles.getRoles');
