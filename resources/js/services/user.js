@@ -1,4 +1,5 @@
 import {getData, saveData, showErrorAlert, showSuccessAlert} from "../common";
+import * as XLSX from 'xlsx/xlsx';
 
 $(document).ready(function () {
 
@@ -193,4 +194,13 @@ window.assignRole = function (id) {
     $("#_id").val(id);
 
     $("#assignRoleModal").css('display',"block");
+}
+
+window.exportToXlsx = function ()
+{
+    let type = 'xlsx';
+    var data = document.getElementById('tb_user');
+    var excel_file = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
+    XLSX.write(excel_file, {bookType: type, bookSST: true, type: 'base64'});
+    XLSX.writeFile(excel_file, 'CMP_Users.' + type)
 }

@@ -22,8 +22,10 @@
         "bootstrap-icons": "^1.10.2",
         "jquery": "^3.6.3",
         "moment": "^2.29.4",
+        "sheetjs": "^2.0.0",
         "sweetalert": "^2.1.2",
         "tui-date-picker": "^4.3.3",
-        "tui-time-picker": "^2.1.6"
+        "tui-time-picker": "^2.1.6",
+        "xlsx": "^0.18.5"
     }
 }

@@ -10,12 +10,14 @@
                 </div>
 
                 @if(!$showAll)
-                    <button id="btnShowAll"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="location.href = '/users/showAll' ">Ver todos</button>
+                    <button id="btnShowAll"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="location.href = '/users/showAll'">Ver todos</button>
+                @else
+                    <button id="btnExport"  class="rounded-md flex space-x-2 w-24 h-10 font-normal text-sm leading-3 text-blue-700 bg-white border border-blue-700 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 duration-150 justify-center items-center" onclick="exportToXlsx()">Exportar</button>
                 @endif
 
                 <div class="p-6 text-blue-700">
                     <div class="hidden md:flex flex-auto space-x-2">
-                        <table class="w-full whitespace-nowrap" style="display: block ;overflow-x: auto;">
+                        <table id="tb_user" class="w-full whitespace-nowrap" style="display: block ;overflow-x: auto;">
                             <tbody>
                             <tr tabindex="0" class="focus:outline-none h-16 border border-gray-100 dark:border-gray-600 rounded">
 
@@ -79,11 +81,13 @@
                                     </div>
                                 </td>
 
+                                @if(!$showAll)
                                 <td class="text-center">
                                     <div class="flex items-center pl-5">
                                         <p class="text-base font-medium leading-none text-blue-700 dark:text-white  mr-2">Acción</p>
                                     </div>
                                 </td>
+                                @endif
                             </tr>
 
                             <tr class="h-3"></tr>
@@ -156,6 +160,7 @@
                                         </div>
                                     </td>
 
+                                    @if(!$showAll)
                                     <td class="">
                                         <div class="flex items-center pl-5">
                                             @can('users.edit')
@@ -166,6 +171,7 @@
                                             @endcan
                                         </div>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
