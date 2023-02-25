@@ -32,7 +32,7 @@ class UserController extends Controller
 
     public function showAll()
     {
-        $users = User::all();
+        $users = User::orderBy('id')->get();
         $showAll = true;
         return view('users.index', compact('users', 'showAll'));
     }
