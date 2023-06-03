@@ -84,10 +84,10 @@
                                @endforeach
                            </tbody>
                        </table>
+                        {{ $lives->links() }}
                        <br>
                     <button id="addLiveBtn" class="focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 inline-flex ml-1.5 items-start justify-start px-6 py-3 bg-blue-700 hover:bg-blue-600 focus:outline-none rounded text-white" >Crear live</button>
                 </div>
-                {{ $lives->links() }}
             </div>
         </div>
     </div>
