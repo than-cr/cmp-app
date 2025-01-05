@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Live;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
 class WelcomeController extends Controller
 {
     /**
      * Show the application welcome screen.
      *
-     * @return Response
+     * @return
      */
-    public function index(): Response
+    public function index()
     {
         $lives = Live::orderBy('id', 'DESC')->take(10)->get();
         return view('welcome', compact('lives'));
